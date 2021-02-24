@@ -1,0 +1,12 @@
+<h1>Destinations</h1>
+
+<%@destinations.each do |d|%>
+    <img src="<%=d.image%>" alt = "destination">
+    <h2><%=d.name%></h2>
+    <p><%=d.city%></p>
+    <p><%=d.state%></p>
+    <p><%=d.country%></p>
+    <p><%=d.things_to_do%></p>
+    <p><%=d.ideal_time_to_visit%></p>
+    <p><%=d.currency%></p>
+<%end%>

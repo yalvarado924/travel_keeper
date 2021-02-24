@@ -1,0 +1,1 @@
+destination1 = Destination.create(name:"")
