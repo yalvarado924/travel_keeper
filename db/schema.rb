@@ -10,13 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_23_225422) do
+ActiveRecord::Schema.define(version: 2021_02_24_235501) do
 
   create_table "destinations", force: :cascade do |t|
     t.string "name"
-    t.string "city"
-    t.string "state"
-    t.string "country"
+    t.string "location"
     t.text "things_to_do"
     t.string "ideal_time_to_visit"
     t.string "currency"
