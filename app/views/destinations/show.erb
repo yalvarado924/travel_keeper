@@ -1,0 +1,13 @@
+<h1><%=@destination.name%></h1>
+
+<img src="<%=@destination.image%>" alt = "destination">
+
+<%=@destination.location%>
+<%=@destination.things_to_do%>
+<%=@destination.ideal_time_to_visit%>
+<%=@destination.currency%>
+
+<form action="/destinations/<%=@destination.id%>" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" value="Delete Destination">
+</form>

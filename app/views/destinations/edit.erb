@@ -1,0 +1,18 @@
+<h1>Edit <%=@destination.name%></h1>
+
+<form action="/destinations/<%=@destination.id%>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="name" value="<%=@destination.name%>"><br><br>
+  <label for="image">Image Link:</label>
+  <input type="text" id="image" name="image" value="<%=@destination.image%>"><br><br>
+  <label for="location">Location:</label>
+  <input type="text" id="location" name="location" value="<%=@destination.location%>"><br><br>
+  <label for="things_to_do">Things To Do:</label>
+  <input type="text" id="things_to_do" name="things_to_do" value="<%=@destination.things_to_do%>"><br><br>
+  <label for="ideal_time_to_vist">Best Time To Visit:</label>
+  <input type="text" id="ideal_time_to_vist" name="ideal_time_to_visit" value="<%=@destination.ideal_time_to_visit%>"><br><br>
+  <label for="currency">Currency:</label>
+  <input type="text" id="currency" name="currency" value="<%=@destination.currency%>"><br><br>
+  <input type="submit" value="Submit">
+</form>
