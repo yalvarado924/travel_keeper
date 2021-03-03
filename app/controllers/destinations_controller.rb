@@ -6,6 +6,7 @@ class DestinationsController < ApplicationController
     get '/destinations' do
         if logged_in?
             if current_user.destinations.empty?
+                flash[:message] = "Your Travel Keeper is empty. Add your first destination!"
                 redirect '/destinations/new'
             else
                 @destinations = current_user.destinations
@@ -63,7 +64,7 @@ class DestinationsController < ApplicationController
             if @destination.user_id == session[:user_id]
                 erb :'/destinations/edit'
             else
-                flash[:error] = "Not authorized to make an edit"
+                flash[:error] = "Not authorized to make an edit on this destination."
                 redirect '/destinations'
             end
         else
