@@ -1,21 +1,26 @@
 class UsersController < ApplicationController
 
     get '/signup' do
+        if logged_in?
+            redirect '/destinations'
+        else
         erb :'users/signup'
+        end
     end
 
     post '/signup' do
-        user = User.new(params)
-        if user.name.blank? || user.username.blank? || user.password.blank?
+        @user = User.new(params)
+        if @user.name.blank? || @user.username.blank? || @user.password.blank?
             @error = "All fields must be filled to signup"
             erb :'users/signup'
-        elsif User.find_by(username: user.username)
+        elsif User.find_by(username: @user.username)
             @error = "This username already exists"
             erb :'users/signup'
         else
-            user.save
-            session[:user_id] = user.id
+            @user.save
+            session[:user_id] = @user.id
             redirect '/destinations'
         end
     end
 end
+

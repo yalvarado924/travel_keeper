@@ -4,9 +4,13 @@ class DestinationsController < ApplicationController
 
     #index
     get '/destinations' do
-        if current_user
-            @destinations = Destination.all
-            erb :'destinations/index'
+        if logged_in?
+            if current_user.destinations.empty?
+                redirect '/destinations/new'
+            else
+                @destinations = current_user.destinations
+                erb :'destinations/index'
+            end
         else
             flash[:error] = "Log in to view destinations"
             redirect '/login'

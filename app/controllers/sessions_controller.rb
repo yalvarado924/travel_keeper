@@ -1,7 +1,11 @@
 class SessionsController < ApplicationController
 
     get '/login' do
+        if logged_in?
+            redirect '/destinations'
+        else
         erb :'users/login'
+        end
     end
 
     post '/login' do

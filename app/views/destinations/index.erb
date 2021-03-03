@@ -3,12 +3,13 @@
 <a href="/destinations/new">Add a Destination</a>
 
 <%@destinations.each do |d|%>
+
+    <% if current_user %>
     <h2><a href="/destinations/<%=d.id%>"><%=d.name%></a></h2>
         <img src="<%=d.image%>" alt = "destination">
+        <%end%>
     <% if current_user == d.user %>
         <a href="/destinations/<%=d.id%>/edit">Edit</a>
     <%end%>
 <%end%>
 
-
- 
