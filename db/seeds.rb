@@ -1,5 +1,3 @@
-Destination.destroy_all
-
 destination1 = Destination.create(name:"South Island", location:"New Zealand",things_to_do:"Mt. Cook, Larnach Castle, Bird Watching, Wineries", ideal_time_to_visit:"Summer", currency:"New Zealand Dollar", image:"https://www.tripsavvy.com/thmb/7pEOGMVeCbvcNmT60iqYPH-J6-A=/2119x1415/filters:fill(auto,1)/panoramic-view-nature-landscape-in-south-island-new-zealand-898280184-b1d7fd1b8e86441083b564d31a75066e.jpg")
 
 destination2 = Destination.create(name:"London", location:"England",things_to_do:"London Eye, Big Ben, Buckingham Palace, Hyde Park", ideal_time_to_visit:"Spring", currency:"Pound", image:"https://cdn.londonandpartners.com/visit/general-london/areas/river/76709-640x360-houses-of-parliament-and-london-eye-on-thames-from-above-640.jpg")
