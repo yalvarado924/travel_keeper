@@ -5,8 +5,8 @@ class DestinationsController < ApplicationController
     #index
     get '/destinations' do
         if current_user
-        @destinations = Destination.all
-        erb :'destinations/index'
+            @destinations = Destination.all
+            erb :'destinations/index'
         else
             flash[:error] = "Log in to view destinations"
             redirect '/login'
@@ -16,7 +16,7 @@ class DestinationsController < ApplicationController
     #new
     get '/destinations/new' do
         if current_user
-        erb :'destinations/new'
+            erb :'destinations/new'
         else
             flash[:error] = "Log in to add a new destination"
             redirect '/login'
