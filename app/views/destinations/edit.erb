@@ -1,5 +1,9 @@
 <h1>Edit <%=@destination.name%></h1>
 
+<%=@error%>
+
+<br><br>
+
 <form action="/destinations/<%=@destination.id%>" method="post">
   <input type="hidden" name="_method" value="patch">
   <label for="name">Name:</label>

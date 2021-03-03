@@ -8,69 +8,93 @@ class DestinationsController < ApplicationController
         @destinations = Destination.all
         erb :'destinations/index'
         else
+            flash[:error] = "Log in to view destinations"
             redirect '/login'
         end
     end
 
     #new
     get '/destinations/new' do
-        require_login
+        if current_user
         erb :'destinations/new'
+        else
+            flash[:error] = "Log in to add a new destination"
+            redirect '/login'
+        end
     end
 
     #show
     get '/destinations/:id' do
-        require_login
-        @destination = Destination.find_by(id: params[:id])
-        if @destination
-            erb :'destinations/show'
+        if current_user
+            get_destination
+            if @destination
+                erb :'/destinations/show'
+            else
+                redirect '/destinations'
+            end
         else
-            redirect '/destinations'
+            flash[:error] = "Log in to view destination"
+            redirect '/login'
         end
     end
 
     #post view
     post '/destinations' do
-        require_login
-        destination = current_user.destinations.build(params)
-        if !destination.name.empty? && !destination.location.empty? && !destination.things_to_do.empty?
-            destination.save
-            redirect '/destinations'
-        else
-            @error = "Name, Location, Things To Do are required fields. Please try again."
-            erb :'destinations/new'
+        if current_user
+            destination = current_user.destinations.build(params)
+            if !destination.name.empty? && !destination.location.empty? && !destination.things_to_do.empty?
+                destination.save
+                redirect '/destinations'
+            else
+                @error = "Name, Location, Things To Do are required fields. Please try again."
+                erb :'destinations/new'
+            end
         end
     end
 
     #edit
     get '/destinations/:id/edit' do
-        require_login
-        @destination = Destination.find_by(id:params[:id])
-        if @destination.user_id == session[:user_id]
-            erb :'/destinations/edit'
+        if current_user
+            get_destination
+            if @destination.user_id == session[:user_id]
+                erb :'/destinations/edit'
+            else
+                flash[:error] = "Not authorized to make an edit"
+                redirect '/destinations'
+            end
         else
-            redirect '/destinations'
+            flash[:error] = "Log in to edit one of your destinations"
+            redirect '/login'
         end
     end
 
     #patches edit
     patch '/destinations/:id' do
-        require_login
-        @destination = Destination.find_by(id:params[:id])
-        if !params["destination"]["name"].empty? && !params["destination"]["location"].empty? && !params["destination"]["things_to_do"].empty?
-            redirect "/destinations/#{params[:id]}"
-        else
-            @error = "Data Invalid, try again"
-            erb :'/destinations/edit'
+        if current_user
+            get_destination
+            if !params["destination"]["name"].empty? && !params["destination"]["location"].empty? && !params["destination"]["things_to_do"].empty?
+                @destination.update(params["destination"])
+                redirect "/destinations/#{params[:id]}"
+            else
+                @error = "Name, Location, Things To Do are required fields. Please try again."
+                erb :'/destinations/edit'
+            end
         end
     end
 
     #delete
     delete '/destinations/:id' do
-        require_login
-        destination = Destination.find_by(id:params[:id])
-        destination.destroy
-        redirect '/destinations'
+        if current_user
+            get_destination
+            @destination.destroy
+            redirect '/destinations'
+        end
     end
+
+private
+
+def get_destination
+    @destination = Destination.find_by(id:params[:id])
+end
 
 end
