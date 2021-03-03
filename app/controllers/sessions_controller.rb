@@ -6,14 +6,15 @@ class SessionsController < ApplicationController
 
     post '/login' do
         if params[:username].empty? || params[:password].empty?
-            @error = "All fields must be filled to log in"
+            @error = "All fields must be filled to log in."
             erb :'sessions/login'
         else 
-            if user = User.find_by(username: params[:username], password: params[:password])
+            user = User.find_by(username: params[:username])
+            if user && user.authenticate(params[:password])
                session[:user_id] = user.id
                redirect '/destinations'
             else
-                @error = "This account does not exist"
+                @error = "Invalid Credentials. Please try again."
                 erb :'sessions/login'
             end
         end

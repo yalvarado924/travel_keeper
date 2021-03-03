@@ -4,8 +4,11 @@
 
 <%@destinations.each do |d|%>
     <h2><a href="/destinations/<%=d.id%>"><%=d.name%></a></h2>
-    <img src="<%=d.image%>" alt = "destination">
+        <img src="<%=d.image%>" alt = "destination">
     <% if current_user == d.user %>
         <a href="/destinations/<%=d.id%>/edit">Edit</a>
     <%end%>
 <%end%>
+
+
+ 

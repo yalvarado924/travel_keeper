@@ -6,8 +6,9 @@ class UsersController < ApplicationController
 
     post '/signup' do
         user = User.new(params)
-        if user.name.empty? || user.username.empty? || user.password.empty?
+        if user.name.blank? || user.username.blank? || user.password.blank?
             @error = "All fields must be filled to signup"
+            erb :'users/signup'
         elsif User.find_by(username: user.username)
             @error = "This username already exists"
             erb :'users/signup'

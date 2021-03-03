@@ -1,11 +1,11 @@
 <h1><%=@destination.name%></h1>
 
-<img src="<%=@destination.image%>" alt = "destination">
+<img src="<%=@destination.image%>" alt = "destination"><br><br>
 
-<%=@destination.location%>
-<%=@destination.things_to_do%>
-<%=@destination.ideal_time_to_visit%>
-<%=@destination.currency%>
+<label>Location: </label><%=@destination.location%><br><br>
+<label>Things To Do: </label><%=@destination.things_to_do%><br><br>
+<label>Best Time To Visit: </label><%=@destination.ideal_time_to_visit%><br><br>
+<label>Currency: </label><%=@destination.currency%><br><br>
 
 <form action="/destinations/<%=@destination.id%>" method="post">
     <input type="hidden" name="_method" value="delete">
