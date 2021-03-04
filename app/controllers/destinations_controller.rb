@@ -13,7 +13,7 @@ class DestinationsController < ApplicationController
                 erb :'destinations/index'
             end
         else
-            flash[:error] = "Log in to view destinations"
+            flash[:error] = "Log in to view destinations."
             redirect '/login'
         end
     end
@@ -23,7 +23,7 @@ class DestinationsController < ApplicationController
         if current_user
             erb :'destinations/new'
         else
-            flash[:error] = "Log in to add a new destination"
+            flash[:error] = "Log in to add a new destination."
             redirect '/login'
         end
     end
@@ -38,7 +38,7 @@ class DestinationsController < ApplicationController
                 redirect '/destinations'
             end
         else
-            flash[:error] = "Log in to view destination"
+            flash[:error] = "Log in to view destination."
             redirect '/login'
         end
     end
@@ -68,7 +68,7 @@ class DestinationsController < ApplicationController
                 redirect '/destinations'
             end
         else
-            flash[:error] = "Log in to edit one of your destinations"
+            flash[:error] = "Log in to edit one of your destinations."
             redirect '/login'
         end
     end

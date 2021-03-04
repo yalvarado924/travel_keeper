@@ -5,21 +5,21 @@
 <div class="alert alert-warning"><strong><%=@error%></strong></div>
 </div>
 <% end %>
-<br><br>
+<br>
 
 <form action="/destinations/<%=@destination.id%>" method="post">
   <input type="hidden" name="_method" value="patch">
-  <label for="name">Name:</label>
+  <label for="name">Name:</label><br>
   <input type="text" id="name" name="destination[name]" value="<%=@destination.name%>"><br><br>
-  <label for="image">Image Link:</label>
+  <label for="image">Image Link:</label><br>
   <input type="text" id="image" name="destination[image]" value="<%=@destination.image%>"><br><br>
-  <label for="location">Location:</label>
+  <label for="location">Location:</label><br>
   <input type="text" id="location" name="destination[location]" value="<%=@destination.location%>"><br><br>
-  <label for="things_to_do">Things To Do:</label>
-  <input type="text" id="things_to_do" name="destination[things_to_do]" value="<%=@destination.things_to_do%>"><br><br>
-  <label for="ideal_time_to_vist">Best Time To Visit:</label>
+  <label for="things_to_do">Things To Do:</label><br>
+  <textarea id="things_to_do" name="destination[things_to_do]"><%=@destination.things_to_do%></textarea><br><br>
+  <label for="ideal_time_to_vist">Best Time To Visit:</label><br>
   <input type="text" id="ideal_time_to_vist" name="destination[ideal_time_to_visit]" value="<%=@destination.ideal_time_to_visit%>"><br><br>
-  <label for="currency">Currency:</label>
+  <label for="currency">Currency:</label><br>
   <input type="text" id="currency" name="destination[currency]" value="<%=@destination.currency%>"><br><br>
   <input type="submit" value="Submit">
 </form>
