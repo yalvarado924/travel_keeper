@@ -7,9 +7,14 @@
 <label>Best Time To Visit: </label><%=@destination.ideal_time_to_visit%><br><br>
 <label>Currency: </label><%=@destination.currency%><br><br>
 
+<% if current_user == @destination.user %>
+        
+        <button><a href="/destinations/<%= @destination.id %>/edit">Edit Destination</a></button>
+<%end%>
+
 <form action="/destinations/<%=@destination.id%>" method="post">
     <input type="hidden" name="_method" value="delete">
     <% if @destination.user == current_user%>
-        <input type="submit" value="Delete Destination">
+        <button type="submit" value="Delete Destination">Delete Destination</button>
     <%end%>
 </form>

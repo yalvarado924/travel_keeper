@@ -9,9 +9,6 @@
         <img src="<%=d.image%>" alt = "destination">
         <%end%>
         <br><br>
-    <% if current_user == d.user %>
-        <a href="/destinations/<%=d.id%>/edit">Edit</a>
-        <a href="/destinations/<%=d.id%>/delete">Delete</a>
-    <%end%>
+        <a href="/destinations/<%= d.id %>" class="btn btn-primary">View Destination</a>
 <%end%>
 

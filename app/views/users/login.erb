@@ -1,8 +1,10 @@
 <h1>Log In To Get Started!</h1>
 
+<% if @error != nil %>
 <div class="container">
-<div class="alert alert-warning"><strong><%=@error%><br></strong></div>
+  <div class="alert alert-warning"><strong><%=@error%></strong></div>
 </div>
+<% end %>
 
 <form action="/login" method="post">
   <label for="username">Username:</label>

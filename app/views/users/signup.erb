@@ -1,6 +1,10 @@
 <h1>Sign Up Below!</h1>
 
-<%=@error%><br><br>
+<% if @error != nil %>
+<div class="container">
+<div class="alert alert-warning"><strong><%=@error%></strong></div>
+</div>
+<% end %>
 
 <form action="/signup" method="post">
   <label for="name">Name:</label>

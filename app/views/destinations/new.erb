@@ -1,6 +1,10 @@
 <h2>Where do you want to travel to?</h2>
 
-<p><%=@error%></p>    
+<% if @error != nil %>
+<div class="container">
+<div class="alert alert-warning"><strong><%=@error%></strong></div>
+</div>
+<% end %>
 
 <form action="/destinations" method="post">
   <label for="name">Name:</label>
