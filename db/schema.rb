@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_24_235501) do
+ActiveRecord::Schema.define(version: 2021_03_05_033446) do
 
   create_table "destinations", force: :cascade do |t|
     t.string "name"
@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2021_02_24_235501) do
     t.text "things_to_do"
     t.string "ideal_time_to_visit"
     t.string "currency"
-    t.string "image"
+    t.string "image", default: "https://st-process-production.s3.amazonaws.com/e046bb6c-3dd0-4d92-be54-134802864556/fcf7bcb5-17a4-435f-88dd-3c2ae96a7585.jpg"
     t.integer "user_id"
   end
 

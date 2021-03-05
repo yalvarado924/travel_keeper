@@ -46,7 +46,8 @@ class DestinationsController < ApplicationController
     #post view
     post '/destinations' do
         if current_user
-            destination = current_user.destinations.build(params)
+            filtered_params = params.reject {|key, value| key == "image" && value.empty?}
+            destination = current_user.destinations.build(filtered_params)
             if !destination.name.empty? && !destination.location.empty? && !destination.things_to_do.empty?
                 destination.save
                 redirect '/destinations'
