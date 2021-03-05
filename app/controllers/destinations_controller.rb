@@ -20,7 +20,7 @@ class DestinationsController < ApplicationController
 
     #new
     get '/destinations/new' do
-        if current_user
+        if logged_in?
             erb :'destinations/new'
         else
             flash[:error] = "Log in to add a new destination."
@@ -30,9 +30,8 @@ class DestinationsController < ApplicationController
 
     #show
     get '/destinations/:id' do
-        if current_user
-            get_destination
-            if @destination
+        if logged_in?
+           if @destination = current_user.destinations.find_by(id: params[:id])
                 erb :'/destinations/show'
             else
                 redirect '/destinations'
@@ -45,7 +44,7 @@ class DestinationsController < ApplicationController
 
     #post view
     post '/destinations' do
-        if current_user
+        if logged_in?
             filtered_params = params.reject {|key, value| key == "image" && value.empty?}
             destination = current_user.destinations.build(filtered_params)
             if !destination.name.empty? && !destination.location.empty? && !destination.things_to_do.empty?
@@ -60,7 +59,7 @@ class DestinationsController < ApplicationController
 
     #edit
     get '/destinations/:id/edit' do
-        if current_user
+        if logged_in?
             get_destination
             if @destination.user_id == session[:user_id]
                 erb :'/destinations/edit'
@@ -76,7 +75,7 @@ class DestinationsController < ApplicationController
 
     #patches edit
     patch '/destinations/:id' do
-        if current_user
+        if logged_in?
             get_destination
             if !params["destination"]["name"].empty? && !params["destination"]["location"].empty? && !params["destination"]["things_to_do"].empty?
                 @destination.update(params["destination"])
@@ -90,7 +89,7 @@ class DestinationsController < ApplicationController
 
     #delete
     delete '/destinations/:id' do
-        if current_user
+        if logged_in?
             get_destination
             @destination.destroy
             redirect '/destinations'
