@@ -1,4 +1,4 @@
-<h1>Sign Up Below!</h1>
+<h1>Sign Up</h1>
 
 <% if @error != nil %>
 <div class="container">
@@ -7,11 +7,11 @@
 <% end %>
 
 <form action="/signup" method="post">
-  <label for="name">Name:</label>
+  <label for="name">Name:</label><br>
   <input type="text" id="name" name="name"><br><br>
-  <label for="username">Username:</label>
+  <label for="username">Username:</label><br>
   <input type="text" id="username" name="username"><br><br>
-  <label for="password">Password:</label>
+  <label for="password">Password:</label><br>
   <input type="password" id="password" name="password"><br><br>
   <input type="submit" value="Submit">
 </form>

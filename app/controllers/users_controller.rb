@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 
     get '/signup' do
         if logged_in?
+            flash[:message] = "You're already logged in. Here's your Travel Keeper!"
             redirect '/destinations'
         else
         erb :'users/signup'
