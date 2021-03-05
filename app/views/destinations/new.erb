@@ -1,4 +1,6 @@
-<h2>Where do you want to travel to?</h2>
+<div class="body" style="background-color: gainsboro">
+
+<h1>Where do you want to travel to?</h1>
 
 <% if @error != nil %>
 <div class="container">
@@ -14,10 +16,12 @@
   <label for="location">Location:</label><br>
   <input type="text" id="location" name="location"><br><br>
   <label for="things_to_do">Things To Do: </label><br>
-  <textarea id="things_to_do" name="things_to_do" rows="2" cols="50"></textarea><br><br>
+  <textarea id="things_to_do" name="things_to_do" rows="3" cols="20"></textarea><br><br>
   <label for="ideal_time_to_vist">Best Time To Visit:</label><br>
   <input type="text" id="ideal_time_to_vist" name="ideal_time_to_visit"><br><br>
   <label for="currency">Currency:</label><br>
   <input type="text" id="currency" name="currency"><br><br>
   <input type="submit" value="Submit">
 </form>
+
+</div>

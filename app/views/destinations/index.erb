@@ -1,14 +1,24 @@
-<h1><%=current_user.name%>'s Destinations</h1>
+<h3><a href="/destinations/new" class="btn btn-primary">Add a Destination</a></h3>
+<div class="body" style="background-color: gainsboro">
+    <div class="container">
 
-<a href="/destinations/new">Add a Destination</a>
+        <div class="text-center">
+<h1><%=current_user.name%>'s Travel Keeper</h1>
 
+            <div class="row">
+        
 <%@destinations.each do |d|%>
-
+        <div class="col-sm-6">
     <% if current_user %>
     <h2><a href="/destinations/<%=d.id%>"><%=d.name%></a></h2>
         <img src="<%=d.image%>" alt = "destination">
         <%end%>
         <br><br>
         <a href="/destinations/<%= d.id %>" class="btn btn-primary">View Destination</a>
+        </div>
 <%end%>
+            </div>
+        </div>    
+    </div>
+</div>
 

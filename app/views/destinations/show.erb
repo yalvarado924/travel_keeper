@@ -1,3 +1,6 @@
+<div class="container">
+  <div class="jumbotron">
+
 <h1><%=@destination.name%></h1>
 
 <img src="<%=@destination.image%>" alt = "destination"><br><br>
@@ -9,12 +12,18 @@
 
 <% if current_user == @destination.user %>
         
-        <button><a href="/destinations/<%= @destination.id %>/edit">Edit Destination</a></button>
+        <a href="/destinations/<%= @destination.id %>/edit" class="btn btn-primary">Edit Destination</a>
 <%end%>
+
+<br><br>
 
 <form action="/destinations/<%=@destination.id%>" method="post">
     <input type="hidden" name="_method" value="delete">
     <% if @destination.user == current_user%>
-        <button type="submit" value="Delete Destination">Delete Destination</button>
+        <button type="submit" value="Delete Destination" class="btn btn-primary">Delete Destination</button>
     <%end%>
 </form>
+
+    </div>
+</div>
+
