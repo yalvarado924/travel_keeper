@@ -13,7 +13,7 @@ class DestinationsController < ApplicationController
                 erb :'destinations/index'
             end
         else
-            flash[:error] = "Log in to view destinations."
+            flash[:error] = "Log in to view your destinations."
             redirect '/login'
         end
     end
@@ -34,17 +34,18 @@ class DestinationsController < ApplicationController
            if @destination = current_user.destinations.find_by(id: params[:id])
                 erb :'/destinations/show'
             else
+                flash[:error] = "You can only view your own destinations."
                 redirect '/destinations'
             end
         else
-            flash[:error] = "Log in to view destination."
+            flash[:error] = "Log in to view your destinations."
             redirect '/login'
         end
     end
 
     #post view
     post '/destinations' do
-        if logged_in?
+        if current_user
             filtered_params = params.reject {|key, value| key == "image" && value.empty?}
             destination = current_user.destinations.build(filtered_params)
             if !destination.name.empty? && !destination.location.empty? && !destination.things_to_do.empty?
