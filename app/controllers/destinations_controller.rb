@@ -1,8 +1,5 @@
 class DestinationsController < ApplicationController
 
-    #RESTful routes
-
-    #index
     get '/destinations' do
         if logged_in?
             if current_user.destinations.empty?
@@ -18,7 +15,6 @@ class DestinationsController < ApplicationController
         end
     end
 
-    #new
     get '/destinations/new' do
         if logged_in?
             erb :'destinations/new'
@@ -28,7 +24,6 @@ class DestinationsController < ApplicationController
         end
     end
 
-    #show
     get '/destinations/:id' do
         if logged_in?
            if @destination = current_user.destinations.find_by(id: params[:id])
@@ -43,7 +38,6 @@ class DestinationsController < ApplicationController
         end
     end
 
-    #post view
     post '/destinations' do
         if current_user
             filtered_params = params.reject {|key, value| key == "image" && value.empty?}
@@ -58,7 +52,6 @@ class DestinationsController < ApplicationController
         end
     end
 
-    #edit
     get '/destinations/:id/edit' do
         if logged_in?
             get_destination
@@ -74,7 +67,6 @@ class DestinationsController < ApplicationController
         end
     end
 
-    #patches edit
     patch '/destinations/:id' do
         if logged_in?
             get_destination
@@ -88,7 +80,6 @@ class DestinationsController < ApplicationController
         end
     end
 
-    #delete
     delete '/destinations/:id' do
         if logged_in?
             get_destination
