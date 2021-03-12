@@ -1,0 +1,12 @@
+<% @destinations.each do |destination| %>
+
+    Destination Name: <%= destination.name %><br>
+
+    <%if destination.user != nil%>
+        Added By: <%= destination.user.name %><br>
+     <% end %>
+
+    <img src="<%=destination.image%>" alt = "destination"><br><br>
+    
+<% end %>
+
