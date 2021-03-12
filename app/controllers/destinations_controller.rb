@@ -68,8 +68,9 @@ class DestinationsController < ApplicationController
     end
 
     patch '/destinations/:id' do
-        if logged_in?
-            get_destination
+        get_destination
+        
+        if @destination.user_id == current_user.id
             if !params["destination"]["name"].empty? && !params["destination"]["location"].empty? && !params["destination"]["things_to_do"].empty?
                 @destination.update(params["destination"])
                 redirect "/destinations/#{params[:id]}"
@@ -77,15 +78,27 @@ class DestinationsController < ApplicationController
                 @error = "Name, Location, Things To Do are required fields. Please try again."
                 erb :'/destinations/edit'
             end
+        else
+            flash[:error] = "Not authorized to edit"
+            redirect '/destinations'
         end
     end
 
     delete '/destinations/:id' do
-        if logged_in?
-            get_destination
+        get_destination
+
+        if @destination.user_id == current_user.id
             @destination.destroy
             redirect '/destinations'
+        else
+            flash[:error] = "Not authorized to delete"
+            redirect '/destinations'
         end
+    end
+
+    get '/all_destinations' do
+        @destinations = Destination.includes(:user).all
+        erb :'destinations/all'
     end
 
 private
@@ -93,5 +106,8 @@ private
 def get_destination
     @destination = Destination.find_by(id:params[:id])
 end
+
+#build a path called all destinations with all of the users' destinations, next to each destination is the name of the user that added each destination
+#only display the user that added it if a destination has a user
 
 end
